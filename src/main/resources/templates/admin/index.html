@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+
+    <body>
+        <nav id='menu'>
+            <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+
+            <ul>
+                
+                <li><a href='/user/login'> Back Home</a></li>            
+                     
+            </ul>
+
+
+
+        </nav>  
+        <h1>Admin Page </h1>
+
+        <section>
+            <h2>Account Management</h2>
+
+
+
+
+            <!-- Adjust the URL as needed -->
+            <div style="text-align: center;">
+                <a href="/user/all" type="submit">
+                    <button>Manage Accounts</button>
+                </a>
+            </div>
+
+
+
+
+
+
+        </section>
+     <!-- Section for editing user profiles and changing roles -->
+        <section>
+            <h2>Game Reviews Management</h2>
+
+            <div style="text-align: center;">
+                <a href="/comment/all" type="submit">
+                    <button>Manage Reviews</button>
+                </a>
+            </div>
+
+        </section>
+
+
+
+
+    </body>
+
+</html>

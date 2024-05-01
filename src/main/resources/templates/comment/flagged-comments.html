@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flagged Comments</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <style>
+            /* Custom styles */
+            .container {
+                margin-top: 50px; /* Adds space from the top */
+            }
+            .table-container {
+                width: 80%; /* Adjust the width as needed */
+                margin: 0 auto; /* Centers the container horizontally */
+            }
+        </style>
+    </head>
+    <body>
+        
+        
+          <nav id='menu'>
+            <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+
+            <ul>
+                <li><a href='/admin/index'> Back To Admin Page</a></li>            
+                     
+            </ul>
+
+
+
+        </nav>
+        <div class="container">
+            <div class="table-container">
+                <h1>Flagged Comments</h1>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User ID</th>
+                            <th>Content</th>
+                            <th>Flagged</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Iterate over flaggedComments and display comment information -->
+                        <tr th:each="comment : ${flaggedComments}">
+                            <td th:text="${comment.id}"></td>
+                            <td th:text="${comment.user.user_Id}"></td>
+                            <td th:text="${comment.content}"></td>
+                            <td th:text="${comment.flagged}"></td>
+                            <td>
+                                <form th:action="@{/comment/edit/{id}(id=${comment.id})}" method="post">
+                                    <input type="hidden" name="_method" value="PUT" />
+                                    <!-- Edit button inside the form -->
+                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                </form>
+
+                                <form th:action="@{/comment/delete/{id}(id=${comment.id})}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <!-- Delete button inside the form -->
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

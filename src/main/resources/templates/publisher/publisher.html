@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Publish Your Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+       
+      
+    </nav>
+    
+    <h1 style="text-align: center;">Publish Your Game</h1>
+<!-- form to input new games -->
+    <div >
+        <form action="#" method="post" enctype="multipart/form-data">
+            <label for="gameImage">Game Image:</label>
+            <input type="file" id="gameImage" name="gameImage" accept="image/*" required>
+
+            <label for="gameName">Game Name:</label>
+            <input type="text" id="gameName" name="gameName" required >
+
+            <label for="gameDescription">Game Description:</label>
+            <textarea id="gameDescription" name="gameDescription" rows="4" required></textarea>
+
+            <label for="gamePlatform">Game Platform:</label>
+            <input type="text" id="gamePlatform" name="gamePlatform" required>
+
+            <button type="submit">Add Game</button>
+        </form>
+    </div>
+</body>
+
+</html>

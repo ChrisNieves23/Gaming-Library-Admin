@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User Role</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Edit User Role</h1>
+    <div>
+        <form th:action="@{'/user/edit-role/' + ${user.user_Id}}" method="post">
+            <!-- Ensure the action URL is properly constructed -->
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>User ID</th>
+                        <td><input type="text" th:value="${user.user_Id}" readonly/></td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td><input type="text" th:value="${user.username}" readonly/></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><input type="text" th:value="${user.email}" readonly/></td>
+                    </tr>
+                    <tr>
+                        <th>Role</th>
+                        <td>
+                            <select id="newRole" name="newRole">
+                                <option value="USER">User</option>
+                                <option value="ADMIN">Admin</option>
+                                <option value="Publisher"> Publisher</option>
+                                <!-- Add more roles as needed -->
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User List</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <style>
+            /* Custom styles */
+            .container {
+                margin-top: 50px; /* Adds space from the top */
+            }
+            .table-container {
+                width: 80%; /* Adjust the width as needed */
+                margin: 0 auto; /* Centers the container horizontally */
+            }
+        </style>
+    </head>
+    <body>
+        
+        <nav id='menu'>
+            <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+
+            <ul>
+                <li><a href='/admin/index'> Back To Admin Page</a></li>            
+                     
+            </ul>
+
+
+
+        </nav> 
+        
+        <div class="container">
+            <div class="table-container">
+                <h1>User List</h1>
+
+
+                <!-- Add this form above the table -->
+                <!-- Search by Username Form -->
+                <form action="/user/searchByUsername" method="get" class="form-inline mb-3">
+                    <input type="text" name="keyword" class="form-control mr-sm-2" placeholder="Search by Username">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+
+                <!-- Search by User ID Form -->
+                <form action="/user/searchById" method="get" class="form-inline mb-3">
+                    <input type="number" name="userId" class="form-control mr-sm-2" placeholder="Search by User ID">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Iterate over users list and display user information -->
+                        <tr th:each="user : ${userList}">
+                            <td th:text="${user.userId}"></td>
+                            <td th:text="${user.username}"></td>
+                            <td th:text="${user.name}"></td>
+                            <td th:text="${user.lastname}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.password}"></td>
+                            <td th:text="${user.role}"></td>
+                            <td>
+                                <form th:action="@{'/user/edit-role/' + ${user.userId}}" method="post">
+                                    <input type="hidden" name="_method" value="PUT" />
+                                    <!-- Edit button inside the form -->
+                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                </form>
+
+
+                                <form th:action="@{'/user/delete/' + ${user.userId}}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <!-- Delete button inside the form -->
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
